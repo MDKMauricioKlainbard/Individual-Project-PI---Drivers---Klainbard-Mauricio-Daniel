@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+}
+
+.imgDriver {
+    height: 300px;
+    width: 300px;
+}
+
+.info {
+    margin-left: 30px;
+}

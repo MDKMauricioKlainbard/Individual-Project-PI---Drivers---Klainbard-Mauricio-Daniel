@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+}
+
+.button {
+    font-family: Formula1;
+    padding: 8px;
+    font-size: 40px;
+    border-radius: 16px;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0.781) , rgba(255, 255, 0, 0.76));
+    transition: box-shadow 0.3s;
+}
+
+.button:hover {
+    background-image: linear-gradient(to right, rgb(255, 0, 0) , rgb(255, 255, 0));
+    font-weight: bold;
+}
