@@ -1,29 +1,33 @@
 import { useState, useEffect } from "react";
 import imageHandlerError from "../../placeholders/imageError";
+import styles from './CardPreview.module.css'
+import Title from "../Title/Title";
 
 export default function CardPreview ({props}) {
     const [preview, setPreview] = useState({
+        image: '',
         name: '',
         surname: '',
+        nationality: '',
         description: '',
         datebirth: '',
-        image: '',
         Teams: '',
     })
     useEffect(()=>{
-        let {name, surname, nationality, description, datebirth, image, Teams} = props;
+        let {image, name, surname, nationality, description, datebirth, Teams} = props;
         setPreview(props)
     },[props])
     
     return (
-        <div>
-            <img src = {preview.image} alt = 'No image' onError = {imageHandlerError}></img>
-            <p>{preview.name}</p>
-            <p>{preview.surname}</p>
-            <p>{preview.nationality}</p>
-            <p>{preview.description}</p>
-            <p>{preview.datebirth}</p>
-            <p>{preview.Teams}</p>
+        <div className = {styles.container}>
+            <img className = {styles.image} src = {preview.image} alt = 'No image' onError = {imageHandlerError}></img>
+            <div className = {styles.previewData}>
+                <Title title = {`${preview.name} ${preview.surname}`}/>
+                <p>Nationality: {preview.nationality}</p>
+                <p>Description: {preview.description}</p>
+                <p>Datebirth: {preview.datebirth}</p>
+                <p>Teams: {preview.Teams}</p>
+            </div> 
         </div>
     )
 }

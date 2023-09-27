@@ -4,6 +4,7 @@ const initialState = {
     teams: [],
     drivers: [],
     searchedDrivers: [],
+    searched: false,
     filterDrivers: [],
     filters: {
         from: '',
@@ -28,6 +29,9 @@ export const driversSlice = createSlice({
         getSearchedDrivers: (state, action) => {
             state.searchedDrivers = action.payload
         },
+        searchStatus: (state, action) => {
+            state.searched = action.payload
+        },
         getFilterDrivers: (state, action) => {
             state.filterDrivers = action.payload
         },
@@ -37,5 +41,5 @@ export const driversSlice = createSlice({
     }
 })
 
-export const {getDrivers, getTeams, addDriver, getSearchedDrivers, changeFilters, getFilterDrivers} = driversSlice.actions;
+export const {getDrivers, getTeams, addDriver, getSearchedDrivers, changeFilters, getFilterDrivers, searchStatus} = driversSlice.actions;
 export default driversSlice.reducer;

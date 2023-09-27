@@ -28,7 +28,9 @@ export default function SearchBar () {
                     )
                 })}
             </ul>
-            {!options.found && <p>No results found.</p>}
+            <div className = {styles.message}>
+                {!options.found && <p>No results found.</p>}
+            </div>
         </div>
     )
 }

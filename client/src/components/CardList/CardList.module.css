@@ -1,5 +1,10 @@
 .container {
     display: flex;
-    flex-flow: row wrap;
+    width: 80%;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    border: 2px solid;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

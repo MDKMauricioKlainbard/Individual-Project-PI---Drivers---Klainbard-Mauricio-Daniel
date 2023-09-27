@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import CardPreview from "../../components/CardPreview/CardPreview";
 import validate from "../../helpersFunctions/Form/validate";
+import styles from './Form.module.css'
+import Title from "../../components/Title/Title";
 
 export default function Form() {
     const teams = useSelector(state=>state.drivers.teams)
@@ -54,67 +56,74 @@ export default function Form() {
     const buttonSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:3001/drivers',{...driverInfo, Teams: Teams})
-        .then(data=>setStatus({message: 'El corredor ha sido creado con éxito.'}))
-        .catch(error=>setStatus({message: 'Algo ha salido mal.'}))
+        .then(data=>setStatus({message: 'The racer has been created successfully.'}))
+        .catch(error=>setStatus({message: 'Something has gone wrong.'}))
     }
 
     return (
-        <div>
-        <h1>Form</h1>
-        <form onSubmit = {buttonSubmit}>
-            <div>
-                <label>Name:</label>
-                <input value = {driverInfo.name} onChange = {handleChange} name = 'name'></input>
-                {errors.name && <label>{errors.name}</label>}
-            </div>
+        <div className = {styles.container}>
+            <div className = {styles.containerHS}>
+            <header className = {styles.header}>
+                <Title title = {'Form'}/>
+                <form className = {styles.form} onSubmit = {buttonSubmit}>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Name:</label>
+                        <input className = {styles.input} value = {driverInfo.name} onChange = {handleChange} name = 'name'></input>
+                        <p>{errors.name}</p>
+                    </div>
 
-            <div>
-                <label>Surname:</label>
-                <input value = {driverInfo.surname} onChange = {handleChange} name = 'surname'></input>
-                {errors.surname && <label>{errors.surname}</label>}
-            </div>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Surname:</label>
+                        <input className = {styles.input} value = {driverInfo.surname} onChange = {handleChange} name = 'surname'></input>
+                        <p>{errors.surname}</p>
+                    </div>
 
-            <div>
-                <label>Nationality:</label>
-                <input value = {driverInfo.nationality} onChange = {handleChange} name = 'nationality'></input>
-                {errors.nationality && <label>{errors.nationality}</label>}
-            </div>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Nationality:</label>
+                        <input className = {styles.input} value = {driverInfo.nationality} onChange = {handleChange} name = 'nationality'></input>
+                        <p>{errors.nationality}</p>
+                    </div>
 
-            <div>
-                <label>Description:</label>
-                <textarea value = {driverInfo.description} onChange = {handleChange} name = 'description'/>
-                {errors.description && <label>{errors.description}</label>}
-            </div>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Description:</label>
+                        <textarea className = {styles.input} value = {driverInfo.description} onChange = {handleChange} name = 'description'/>
+                        <p>{errors.description}</p>
+                    </div>
 
-            <div>
-                <label>Date of Birth:</label>
-                <input value = {driverInfo.datebirth} type="date" onChange = {handleChange} name = 'datebirth'></input>
-                {errors.datebirth && <label>{errors.datebirth}</label>}
-            </div>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Date of Birth:</label>
+                        <input className = {styles.input} value = {driverInfo.datebirth} type="date" onChange = {handleChange} name = 'datebirth'></input>
+                        <p>{errors.datebirth}</p>
+                    </div>
 
-            <div>
-                <label>Image:</label>
-                <input value = {driverInfo.image} onChange = {handleChange} name = 'image'></input>
-                {errors.image && <label>{errors.image}</label>}
-            </div>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Image:</label>
+                        <input className = {styles.input} value = {driverInfo.image} onChange = {handleChange} name = 'image'></input>
+                        <p>{errors.image}</p>
+                    </div>
 
-            <div>
-                <label>Teams:</label>
-                <select multiple name = 'Teams' onChange = {handleChange}>
-                    {teams.map(team=>{
-                        return(
-                            <option >{team.name}</option>
-                        )
-                    })}
-                </select>
-                {errors.Teams && <label>{errors.Teams}</label>}
-            </div>
-            <button type = 'submit'>Create driver</button>
-      </form>
-      <div>
-        {status.message && <p>{status.message}</p>}
-      </div>
-      <CardPreview props = {driverInfo}/>
+                    <div className = {styles.item}>
+                        <label className = {styles.label}>Teams:</label>
+                        <select className = {styles.input} multiple = {true} name = 'Teams' onChange = {handleChange}>
+                        {teams.map(team=>{
+                            return(
+                                <option className = {styles.options}>{team.name}</option>
+                            )
+                        })}
+                        </select>
+                        <p>{errors.Teams}</p>
+                    </div>
+                    <button className = {styles.button} type = 'submit'>Create driver</button>
+                    <div className = {status.message === 'Something has gone wrong.' ? styles.statusError : styles.statusSuccesful}>
+                    {status.message && <p>{status.message}</p>}
+                    </div>
+                </form>
+                
+            </header>
+            <section className = {styles.section}>
+                <CardPreview props = {driverInfo}/>
+            </section>
+        </div>
     </div>
   );
 }

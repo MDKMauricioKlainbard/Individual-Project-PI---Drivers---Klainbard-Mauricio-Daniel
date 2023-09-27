@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import styles from './CardDetail.module.css'
 import imageHandlerError from "../../placeholders/imageError"
+import Title from "../Title/Title"
 
 export default function CardDetail() {
     const {id} = useParams();
@@ -26,17 +27,18 @@ export default function CardDetail() {
         })
     },[])
     return (
-        <div class = {styles.container}>
-            <div>
-                <img class = {styles.imgDriver} src = {detail.image} alt = 'No image' onError = {imageHandlerError}/>
-            </div>
-            <div class = {styles.info}>
-                <h1>{detail.name} {detail.surname}</h1>
-                <p>{detail.description}</p>
-                <p>{detail.nationality}</p>
-                <p>{detail.datebirth}</p>
-                <p>{detail.Teams}</p>
-            </div>
+        <div className = {styles.container}>
+            <div className = {styles.containerDetail}>
+            <img className = {styles.image} src = {detail.image} alt = 'No image' onError = {imageHandlerError}></img>
+            <div className = {styles.detailData}>
+                <Title title = {`${detail.name} ${detail.surname}`}/>
+                <p>Nationality: {detail.nationality}</p>
+                <p>Description: {detail.description}</p>
+                <p>Datebirth: {detail.datebirth}</p>
+                <p>Teams: {detail.Teams}</p>
+            </div> 
         </div>
+        </div>
+        
     )
 }

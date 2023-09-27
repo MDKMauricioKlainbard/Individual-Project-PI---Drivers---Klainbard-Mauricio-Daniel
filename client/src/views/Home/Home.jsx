@@ -20,20 +20,30 @@ export default function Home() {
     const dispatch = useDispatch();
     const drivers = useSelector(state=>state.drivers.drivers)
     const filterDrivers = useSelector(state=>state.drivers.filterDrivers);
+    const searchedDrivers = useSelector(state=>state.drivers.searchedDrivers)
+    const searched = useSelector(state=>state.drivers.searched)
+    
     const filters = useSelector(state=>state.drivers.filters);
     const [currentPage, setCurrentPage] = useState(1)
-    const cardsPerPage = 9;
+    const cardsPerPage = 8;
     const totalPages = Math.ceil(filterDrivers.length/cardsPerPage);
     const filterDriversSlice = driversSlice(filterDrivers,currentPage, cardsPerPage)
     const pageHandler = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
     useEffect(()=>{
-        let driversFilterFrom = filtersFrom(filters.from, [...drivers]);
+        let driversFilterFrom;
+        console.log(searched)
+        if(searched) {
+            driversFilterFrom = filtersFrom(filters.from, [...searchedDrivers])
+        }
+        else {
+            driversFilterFrom = filtersFrom(filters.from, [...drivers]);
+        }
         let driversFilterTeam = filtersTeam(filters.team, driversFilterFrom);
         let driversFilterOrder = filtersOrder(filters.order, driversFilterTeam);
         dispatch(getFilterDrivers(driversFilterOrder))
-    },[filters, drivers])
+    },[filters, drivers, searched, searchedDrivers])
     return(
         <div className = {styles.container}>
             <div className = {styles.containerHS}>

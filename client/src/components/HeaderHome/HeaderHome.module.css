@@ -1,4 +1,7 @@
 .header {
+    background-image: url(../../assets/Header_Background.jpg);
+    background-position: center;
+    background-size:auto;
     display: flex;
     flex-direction: column;
     width: 20%;
@@ -7,9 +10,14 @@
     align-items: center;
     border: 2px solid;
     border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 0.4;
+    transition: opacity 0.4s ease-in-out;
 }
 
-.title {
-    font-size: 40px;
-    font-family: Formula1;
+.header:hover {
+    opacity: 1;
 }
+
+
+

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    position: relative;
+}
+
+.title {
+    font-size: 40px;
+    font-family: Formula1;
+    color: #fffafa;
+    transition: font-size 0.5s;
+    -webkit-text-stroke: 2.4px black;
+}
+
+.title:hover {
+    cursor: pointer;
+}

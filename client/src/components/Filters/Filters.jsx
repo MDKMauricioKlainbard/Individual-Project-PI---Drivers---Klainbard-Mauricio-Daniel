@@ -22,32 +22,32 @@ export default function Filters () {
     },[filters])
     return (
         <div className = {styles.container}>
-            <h3>Filters</h3>
+            <h3 className = {styles.h3}>Filters</h3>
             <div className = {styles.filter}>
-                <label>From:</label>
-                <select onChange = {buttonFilterFrom}>
-                    <option selected value = 'Everyone'>Everyone</option>
-                    <option value = "FromAPI">From API</option>
-                    <option value = "CreatedInDB">Created in DB</option>
+                <label className = {styles.filterName}>From:</label>
+                <select className = {styles.select} onChange = {buttonFilterFrom}>
+                    <option className = {styles.options} selected value = 'Everyone'>Everyone</option>
+                    <option className = {styles.options} value = "FromAPI">From API</option>
+                    <option className = {styles.options} value = "CreatedInDB">Created in DB</option>
                 </select>
             </div>
             <div className = {styles.filter}>
-                <label>Order:</label>
-                <select onChange = {buttonFilterOrder}>
-                    <option selected value = 'No order'>No order</option>
-                    <option value = 'AlphabeticalAZ'>Alphabetical A-Z</option>
-                    <option value = 'AlphabeticalZA'>Alphabetical Z-A</option>
-                    <option value = 'AgeOY'>Age from old to young</option>
-                    <option value = 'AgeYO'>Age from young to old</option>
+                <label className = {styles.filterName}>Order:</label>
+                <select className = {styles.select} onChange = {buttonFilterOrder}>
+                    <option className = {styles.options} selected value = 'No order'>No order</option>
+                    <option className = {styles.options} value = 'AlphabeticalAZ'>Alphabetical A-Z</option>
+                    <option className = {styles.options} value = 'AlphabeticalZA'>Alphabetical Z-A</option>
+                    <option className = {styles.options} value = 'AgeOY'>Age from old to young</option>
+                    <option className = {styles.options} value = 'AgeYO'>Age from young to old</option>
                 </select>
             </div>
             <div className = {styles.filter}>
-                <label>Team:</label>
-                <select onChange = {buttonFilterTeam}>
-                    <option selected value = 'Everyone'>Everyone</option>
+                <label className = {styles.filterName}>Team:</label>
+                <select className = {styles.select} onChange = {buttonFilterTeam}>
+                    <option className = {styles.options} selected value = 'Everyone'>Everyone</option>
                     {teams.map(team=>{
                         return(
-                            <option value = {team.name}>{team.name}</option>
+                            <option className = {styles.options} value = {team.name}>{team.name}</option>
                         )
                     })}
                 </select>
